@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Favorite Soccer team </title>
+    <style>
+    body {
+        text-align: center;
+    }
+    
+    </style>
+</head>
+<body>
+ <h2>Favorite soccer team</h2>
+ <form>
+    
+    <select name='options' id="league-list">
+        <option value=''>Choose a league first </option>
+        <option value='english'>Premier league</option>
+        <option value='spain'>La Liga</option>
+        <option value='italy'>Seria A</option>
+        <option value='germany'>Bundesliga</option>
+    </select>
+
+    <label for='team-name'>Write team name: </label>
+        <input type="text" id='team-name'>
+    <label for='status'></label>
+ </form>
+
+ <button id='submit' type="submit">Submit</button>
+ <button id='clear' type="submit">Clear</button>
+ <div id='team list'></div>
+
+    <script>
+
+        function main(){
+            const addButton = document.getElementById('submit');
+            addButton.addEventListener('click',add);
+        }
+        function getInfo(){
+            const tName=document.getElementById('team-name').value;
+            const teamList= document.getElementById('league-list').checked;
+            
+            document.getElementById('team-name').value='';
+            document.getElementById('league-list').checked='';
+
+            return [tName,teamList];
+        }
+        function add(e){
+            e.preventDefault();
+            [tName,teamList]= getInfo();
+            if(tName==='')
+            {
+                alert('It cant be blank');
+            }else{
+                const output= document.getElementById('team list');
+                const newLists=document.createElement('ul');
+            
+            newLists.appendChild(document.createTextNode(tName));
+            output.appendChild(newLists);
+            }
+        }
+        window.onload=main;
+    </script>
+</body>
+</html>
